@@ -41,5 +41,8 @@ class Question extends Model
 
     }
 
+    public function getBodyHtmlAttribute(){
+        
+    }
 
 }
