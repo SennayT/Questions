@@ -50,7 +50,7 @@ class QuestionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param Question $question
      * @return \Illuminate\Http\Response
      */
     public function show(Question $question)
@@ -61,30 +61,39 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param Question $question
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
     {
-        //
+        /*^^same as doing
+         * function edit($id) {
+         *
+         * $question = Question::findOrFail($id)
+         * }
+         * */
+
+        return view('questions.edit',compact('question'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
+     * @param  AskQuestionRequest $request
+     * @param Question $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
         //
+        $question->update($request->only('title','body'));
+        return redirect(route('questions.index'))->with('success','Question Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Question  $question
+     * @param Question $question
      * @return \Illuminate\Http\Response
      */
     public function destroy(Question $question)
