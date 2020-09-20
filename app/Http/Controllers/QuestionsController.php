@@ -99,5 +99,11 @@ class QuestionsController extends Controller
     public function destroy(Question $question)
     {
         //
+        try {
+            $question->delete();
+        } catch (\Exception $e) {
+            dd($e);
+        }
+        return redirect(route('questions.index'))->with('success','Question Deleted');
     }
 }
