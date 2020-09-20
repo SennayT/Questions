@@ -10,7 +10,7 @@
                         <div class="d-flex align-items-center" >
                             <h2>All Questions</h2>
                             <div class="ml-auto">
-                                <a href="{{route('questions.create')}}" class="btn btn-outline-secondary" >Ask Question</a>
+                                <a href="#" class="btn btn-outline-secondary" >Ask Question</a>
                             </div>
                         </div>
 
@@ -21,8 +21,13 @@
                             <div class="media">
                                 <div class="media-body">
                                     <h3 class="mt-0">
-                                        <a href="#">{{$question->title}}</a>
+                                        <a href="{{$question->url}}">{{$question->title}}</a>
                                     </h3>
+                                    <p class="lead">Asked by <a href="{{$question->user->url}}">{{$question->user->name}}</a>
+                                    <small class="text-muted">
+                                        {{$question->createdDate}}
+                                    </small>
+                                    </p>
                                     {{\Illuminate\Support\Str::limit($question->body,250)}}
                                     <hr>
                                 </div>
