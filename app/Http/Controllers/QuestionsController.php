@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\AskQuestionRequest;
-
+use Illuminate\Support\Facades\Gate;
 class QuestionsController extends Controller
 {
     /**
@@ -74,8 +74,12 @@ class QuestionsController extends Controller
          * $question = Question::findOrFail($id)
          * }
          * */
-
-        return view('questions.edit',compact('question'));
+        if(Gate::allows('update-question',$question)) {
+            return view('questions.edit',compact('question'));
+        }
+        else{
+            abort(403,'Access denied');
+        }
     }
 
     /**
@@ -87,9 +91,14 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
-        //
-        $question->update($request->only('title','body'));
-        return redirect(route('questions.index'))->with('success','Question Updated');
+        // To be safe, added the gate here in addition to the edit method
+        if(Gate::allows('update-question',$question)) {
+            $question->update($request->only('title', 'body'));
+            return redirect(route('questions.index'))->with('success', 'Question Updated');
+        }
+        else{
+            abort(403,'Access Denied');
+        }
     }
 
     /**
@@ -101,11 +110,16 @@ class QuestionsController extends Controller
     public function destroy(Question $question)
     {
         //
-        try {
-            $question->delete();
-        } catch (\Exception $e) {
-            dd($e);
+        if(Gate::allows('delete-question',$question)) {
+            try {
+                $question->delete();
+            } catch (\Exception $e) {
+                dd($e);
+            }
+            return redirect(route('questions.index'))->with('success', 'Question Deleted');
         }
-        return redirect(route('questions.index'))->with('success','Question Deleted');
+        else{
+            abort(403,'Access Denied');
+        }
     }
 }
