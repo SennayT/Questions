@@ -42,7 +42,11 @@ class Question extends Model
     }
 
     public function getBodyHtmlAttribute(){
-        
+
+    }
+
+    public function answers() {
+        $this->hasMany(Answer::class);
     }
 
 }

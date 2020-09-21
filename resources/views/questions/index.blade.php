@@ -30,9 +30,9 @@
                                     </div>
                                     <div class="status {{$question->status}} ">
                                         <strong>
-                                            {{$question->answers}}
+                                            {{$question->answers_count}}
                                         </strong>
-                                            {{\Illuminate\Support\Str::plural('answer',$question->answers)}}
+                                            {{\Illuminate\Support\Str::plural('answer',$question->answers_count)}}
                                     </div>
 
                                     <div class="views">
