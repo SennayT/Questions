@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-body">
+                    <div class="card-title">
                         <div class="d-flex align-items-center" >
                             <h1>{{$question->title}}</h1>
                             <div class="ml-auto">
@@ -14,8 +15,24 @@
                         </div>
 
                     </div>
-
-                    <div class="card-body">
+                        <hr>
+                    <div class="media">
+                        <div class="d-flex flex-column vote-controls">
+                            <a title="This question is useful" class="vote-up" >
+                                <i class = "fas fa-caret-up fa-3x " ></i>
+                            </a>
+                            <span class="votes-count">
+                                1
+                            </span>
+                            <a title="This Question is Not Useful" class="vote-down off" >
+                                <i class = "fas fa-caret-down fa-3x" ></i>
+                            </a>
+                            <a title="Click to mark as favorite" class="favorite mt-2 favorited" >
+                                <i class = "fas fa-star fa-2x" ></i>
+                                <span class="favorites-count">123</span>
+                            </a>
+                        </div>
+                    <div class="media-body">
                         {{ $question->body }}
                         <div class="float-right">
                             <span class="text-muted">
@@ -33,6 +50,8 @@
                             </span>
                         </div>
                     </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,7 +64,27 @@
                         </div>
                         <hr>
                         @foreach($question->answers as $answer)
+
+
+
                             <div class="media">
+
+                                <div class="d-flex flex-column vote-controls">
+                                    <a title="This answer is useful" class="vote-up" >
+                                        <i class = "fas fa-caret-up fa-3x " ></i>
+                                    </a>
+                                    <span class="votes-count">
+                                1
+                            </span>
+                                    <a title="This answer is Not Useful" class="vote-down off" >
+                                        <i class = "fas fa-caret-down fa-3x" ></i>
+                                    </a>
+                                    <a title="Mark this answer as best answer" class="vote-accepted mt-2 favorited" >
+                                        <i class = "fas fa-check fa-2x" ></i>
+                                        <span class="favorites-count">123</span>
+                                    </a>
+                                </div>
+
                                 <div class="media-body">
                                     {{$answer->body}}
                                     <div class="float-right">
