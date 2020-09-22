@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+        .row>.col-md-12
     </div>
 
 
