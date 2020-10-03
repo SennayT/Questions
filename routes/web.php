@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\AnswersController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +25,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('/questions',QuestionsController::class)->except('show');
+
+
+Route::resource('questions.answers',AnswersController::class)->only(['store','edit','update','destroy']);
+//Route::resource('questions.answers',AnswersController::class)->except(['index','create','show']);
+
 Route::get('/questions/{slug}',[QuestionsController::class,'show'])->name('questions.show'); // So slug can be used instead of id
