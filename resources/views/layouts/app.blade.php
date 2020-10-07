@@ -67,6 +67,7 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item"><a href="/questions" class="nav-link">Questions</a></li>
                     </ul>
                 </div>
             </div>
