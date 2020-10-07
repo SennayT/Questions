@@ -23,10 +23,23 @@
                             <a title="This answer is Not Useful" class="vote-down off" >
                                 <i class = "fas fa-caret-down fa-3x" ></i>
                             </a>
-                            <a title="Mark this answer as best answer" class="{{$answer->status}} mt-2 favorited" >
+                            @can('accept',$answer)
+
+                            <a onclick="event.preventDefault(); document.getElementById('accept-answer-{{$answer->id}}').submit();"
+                                title="Mark this answer as best answer" class="{{$answer->status}} mt-2 favorited" >
                                 <i class = "fas fa-check fa-2x" ></i>
                                 <span class="favorites-count">123</span>
                             </a>
+                            <form style="display: none;" id="accept-answer-{{$answer->id}}" method="post" action="{{route('answers.accept',$answer->id)}}" >
+                                @CSRF
+                            </form>
+
+                            @else
+                                @if($answer->is_best)
+                                    <a title="The question owner has accepted this answer" class=" {{$answer->status}} mt-2"><i class="fas fa-check fa-2x"></i></a>
+                                @endif
+
+                            @endcan
                         </div>
 
                         <div class="media-body">

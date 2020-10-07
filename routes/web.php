@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\AnswersController;
+use App\Http\Controllers\AcceptAnswerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,3 +32,4 @@ Route::resource('questions.answers',AnswersController::class)->only(['store','ed
 //Route::resource('questions.answers',AnswersController::class)->except(['index','create','show']);
 
 Route::get('/questions/{slug}',[QuestionsController::class,'show'])->name('questions.show'); // So slug can be used instead of id
+Route::post('/answers/{answer}/accept',[AcceptAnswerController::class,'accept'])->name('answers.accept');
