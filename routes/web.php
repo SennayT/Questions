@@ -18,7 +18,7 @@ use App\Http\Controllers\AnswersController;
 use App\Http\Controllers\AcceptAnswerController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/questions');
 });
 
 Auth::routes();
